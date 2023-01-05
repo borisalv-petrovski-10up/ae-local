@@ -33,7 +33,6 @@ services:
     profiles:
       - appengine
       - tests
-      - datastore-emulator
 
   unit-tests:
     container_name: unit-tests
@@ -66,7 +65,6 @@ services:
       - datastore-emulator
     profiles:
       - appengine
-      - datastore-emulator
 
 volumes:
   data:
