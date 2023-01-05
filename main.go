@@ -10,8 +10,8 @@ import (
 
 	"github.com/spf13/viper"
 
-	"source.cloud.google.com/sk-borislav/ae-local/handler"
-	"source.cloud.google.com/sk-borislav/ae-local/repository"
+	"github.com/borisalv-petrovski-10up/ae-local/handler"
+	"github.com/borisalv-petrovski-10up/ae-local/repository"
 )
 
 type AppConfig struct {

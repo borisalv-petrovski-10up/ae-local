@@ -13,8 +13,8 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"source.cloud.google.com/sk-borislav/ae-local/handler"
-	"source.cloud.google.com/sk-borislav/ae-local/repository"
+	"github.com/borisalv-petrovski-10up/ae-local/handler"
+	"github.com/borisalv-petrovski-10up/ae-local/repository"
 )
 
 const DatastoreEmulatorHost = "0.0.0.0:8081"
