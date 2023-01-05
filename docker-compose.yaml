@@ -1,0 +1,72 @@
+version: "3.8"
+
+services:
+  app-engine:
+    build:
+      context: docker
+    container_name: local-app-engine
+    image: custom-google-cloud-sdk:1.0.0
+    environment:
+      PORT: 8080
+      PROJECT_ID: testing
+      DATASTORE_EMULATOR_HOST: datastore-emulator:8081
+    entrypoint: dev_appserver.py
+    # The 0.0.0.0 is required, so we can connect from the local machine.
+    command: ["/workspace/app.yaml", "--support_datastore_emulator=false", "--admin_host=0.0.0.0", "--host=0.0.0.0"]
+    ports:
+      - "8080:8080"
+      - "8000:8000"
+    volumes:
+      - ./:/workspace
+    profiles:
+      - appengine
+
+  datastore-emulator:
+    build:
+      context: docker
+    container_name: datastore-emulator
+    image: custom-google-cloud-sdk:1.0.0
+    ports:
+      - "8081:8081"
+    # The 0.0.0.0 is required, so we can connect from the local machine.
+    command: gcloud beta emulators datastore start --project=testing --host-port=0.0.0.0:8081
+    profiles:
+      - appengine
+      - tests
+      - datastore-emulator
+
+  unit-tests:
+    container_name: unit-tests
+    image: golang:1.15.10-stretch
+    environment:
+      PROJECT_ID: testing
+      DATASTORE_EMULATOR_HOST: datastore-emulator:8081
+    working_dir: /workspace
+    # -p 1 will execute the tests sequentially otherwise the parallel execution will be
+    # inconsistent because we rely on same instance of the emulator.
+    command: go test -p 1 ./...
+    depends_on:
+        - datastore-emulator
+    volumes:
+      - ./:/workspace
+      - data:/go/pkg
+    profiles:
+      - tests
+
+  datastore-gui:
+    container_name: datastore-gui
+    image: 346o/datastore-gui:latest
+    environment:
+      PORT: 3000
+      PROJECT_ID: testing
+      DATASTORE_EMULATOR_HOST: datastore-emulator:8081
+    ports:
+      - "3000:3000"
+    depends_on:
+      - datastore-emulator
+    profiles:
+      - appengine
+      - datastore-emulator
+
+volumes:
+  data:

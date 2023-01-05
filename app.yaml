@@ -1,0 +1,13 @@
+# The latest go version that dev_appserver.py supports is go1.15
+runtime: go115
+
+handlers:
+  - url: /static
+    static_dir: static
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10
