@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "c8bbc96e-c758-4013-b522-adf3d751e11c",
+		"name": "App Engine Local",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create article with title Food",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"author\": \"Peter\",\n    \"title\": \"Food\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/create-article",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"create-article"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get article with title Food",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get-article/Food",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get-article",
+						"Food"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create article with title PC",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"author\": \"Peter\",\n    \"title\": \"PC\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/create-article",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"create-article"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get article with title PC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/get-article/PC",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"get-article",
+						"PC"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
